@@ -3,8 +3,10 @@
 A minimal, web-first workout tracker. Log sets in seconds and view simple charts for weekly volume and estimated 1RM. No ads or social feeds.
 
 ## Demo Video
+<video src="screenshots/demo.mp4" controls playsinline muted width="100%"></video>
 
-[Watch Demo Video (1:45)](YOUR_YOUTUBE_LINK_HERE)
+<!-- optional: fallback link -->
+[download the demo mp4](screenshots/demo.mp4)
 
 ## Screenshots
 
