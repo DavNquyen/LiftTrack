@@ -1,25 +1,58 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './hooks/useAuth';
+import AuthContainer from './components/AuthContainer';
+import Navbar from './components/Navbar';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import DashboardPage from './pages/DashboardPage';
+import WorkoutsPage from './pages/WorkoutsPage';
+import ExercisesPage from './pages/ExercisesPage';
+import TemplatesPage from './pages/TemplatesPage';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route element={<AuthContainer />}>
+            <Route path="/" element={
+              <>
+                <Navbar />
+                <DashboardPage />
+              </>
+            } />
+            <Route path="/workouts" element={
+              <>
+                <Navbar />
+                <WorkoutsPage />
+              </>
+            } />
+            <Route path="/exercises" element={
+              <>
+                <Navbar />
+                <ExercisesPage />
+              </>
+            } />
+            <Route path="/templates" element={
+              <>
+                <Navbar />
+                <TemplatesPage />
+              </>
+            } />
+            <Route path="/profile" element={
+              <>
+                <Navbar />
+                <ProfilePage />
+              </>
+            } />
+          </Route>
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
