@@ -70,7 +70,7 @@ const TemplatesPage: React.FC = () => {
     }
   };
 
-  const useTemplate = async (templateId: string) => {
+  const handleUseTemplate = async (templateId: string) => {
     try {
       const res = await api.post(`/templates/${templateId}/use`);
       alert('Template loaded! Go to Dashboard to start your workout.');
@@ -222,7 +222,7 @@ const TemplatesPage: React.FC = () => {
               <h3 className="font-semibold text-gray-900">{template.name}</h3>
               <div className="flex space-x-1">
                 <button
-                  onClick={() => useTemplate(template._id)}
+                  onClick={() => handleUseTemplate(template._id)}
                   className="p-1 text-green-600 hover:bg-green-50 rounded"
                   title="Use template"
                 >
@@ -244,7 +244,7 @@ const TemplatesPage: React.FC = () => {
               {template.exercises.slice(0, 3).map((exercise, index) => (
                 <div key={index} className="text-sm text-gray-700">
                   {(exercise.exerciseId as any)?.name} - {exercise.sets}×{exercise.reps}
-                  {exercise.weight > 0 && ` @ ${exercise.weight}lbs`}
+                  {exercise.weight && exercise.weight > 0 && ` @ ${exercise.weight}lbs`}
                 </div>
               ))}
               {template.exercises.length > 3 && (
